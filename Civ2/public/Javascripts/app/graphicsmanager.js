@@ -11,20 +11,20 @@ define(function (require){
         var that = this;
         this.eventManager = null;
         var mapContainer = null;
-        var stage = null;
-        var renderer = null;
+        this.stage = null;
+        this.renderer = null;
         this.init = function () {
             PIXI.dontSayHello = true;
-            stage = new PIXI.Stage(0x888888, true);
-            renderer = PIXI.autoDetectRenderer(Constants.Screen.width, Constants.Screen.height);
-            document.body.appendChild(renderer.view);
-            requestAnimFrame(animate);
+            that.stage = new PIXI.Stage(0x888888, true);
+            that.renderer = PIXI.autoDetectRenderer(Constants.Screen.width, Constants.Screen.height);
+            document.body.appendChild(that.renderer.view);
+            requestAnimFrame(that.animate);
         };
-        animate = function() {
+        this.animate = function() {
             Statsmanager.begin();
-            requestAnimFrame(animate);
+            requestAnimFrame(that.animate);
             TWEEN.update();
-            renderer.render(stage);
+            that.renderer.render(that.stage);
             Statsmanager.end();
         };
         this.renderGameView = function (gameState) {
@@ -52,8 +52,10 @@ define(function (require){
                 }
             }
 
-            stage.addChild(mapContainer);
+            that.stage.addChild(mapContainer);
         };
+        
+        // TODO: Optimize offscreen tile performance. Set visibility of tiles not in view to false
         this.moveCameraAbs = function (x, y) {
             if (x <= Constants.Screen.halfWidth)
                 mapContainer.position.x = 0;

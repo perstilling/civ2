@@ -1,7 +1,7 @@
 ﻿Constants = {};
 
 Constants.Game = {
-    scale : 1
+    scale : 0.2
 }
 
 Constants.Screen = {
