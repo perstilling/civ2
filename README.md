@@ -18,7 +18,7 @@ The priorities for the project are:
 
 ## Technologies
 
-The technologies chosen are so far:
+The technologies chosen so far:
 
 * Node.js for backend
 * WebGL + HTML5 client rendering through primarily PIXI.js + Tween.js
